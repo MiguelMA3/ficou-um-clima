@@ -9,10 +9,17 @@ import (
 	"github.com/MiguelMA3/pintou-um-clima/pkg/types"
 )
 
-const apiKey = "821d62f1"
-const apiURL = "https://api.hgbrasil.com/weather?key=" + apiKey
+var apiKey string
+var apiURL string
 
-// Where On Earth IDentifier / City Code
+func init() {
+	key := ApiKey()
+	apiKey = string(key)
+
+	apiURL = "https://api.hgbrasil.com/weather?key=" + apiKey
+}
+
+// WOEID = Where On Earth IDentifier || City Code
 func GetWeather(woeid int) (types.WeatherResponse, error) {
 	url := fmt.Sprintf("%s&woeid=%d", apiURL, woeid)
 	response, err := http.Get(url)

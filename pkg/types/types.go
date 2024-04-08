@@ -15,7 +15,7 @@ type WeatherResponse struct {
 		Rain          float64 `json:"rain"`
 		WindSpeedy    string  `json:"wind_speedy"`
 		MoonPhase     string  `json:"moon_phase"`
-		Forecast      [4]Forecast
+		Forecast      []Forecast
 	} `json:"results"`
 }
 

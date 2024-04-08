@@ -1,14 +1,14 @@
+// main.go
+
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/MiguelMA3/pintou-um-clima/pkg/data"
 	"github.com/MiguelMA3/pintou-um-clima/pkg/routes"
-
 	"github.com/gorilla/mux"
 )
 
@@ -27,15 +27,13 @@ func main() {
 			// Paranaguá - Antonina - Pontal do Paraná
 			woeids := []int{455895, 456682, 26795245}
 			for _, woeid := range woeids {
-				weatherResp, err := data.GetWeather(woeid)
+				_, err := data.GetWeather(woeid)
 				if err != nil {
-					fmt.Printf("Erro ao obter a previsão do tempo para WOEID %d: %v\n", woeid, err)
+					log.Printf("Erro ao obter a previsão do tempo para WOEID %d: %v\n", woeid, err)
 					continue
 				}
 
-				// Processar e utilizar os dados da previsão do tempo conforme necessário
-
-				fmt.Printf("Previsão do tempo para %s atualizada.\n", weatherResp.Results.City)
+				log.Printf("Previsão do tempo para WOEID %d atualizada.\n", woeid)
 			}
 
 			// Aguardar o intervalo de atualização antes de realizar a próxima atualização
